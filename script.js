@@ -113,3 +113,10 @@ scrollLinks.forEach(link => {
     }
   });
 });
+function toggleMenu() {
+  const menu = document.getElementById("sideMenu");
+  menu.classList.toggle("open");
+
+  // Optional: prevent body scroll when menu is open
+  document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "auto";
+}
