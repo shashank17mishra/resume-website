@@ -113,3 +113,31 @@ scrollLinks.forEach(link => {
     }
   });
 });
+/* Mobile View Menu */
+@media (max-width: 768px) {
+  .side-menu {
+    position: fixed;
+    top: 0;
+    left: -100%; /* Hidden initially */
+    width: 100%; /* Full width for mobile */
+    height: 100vh;
+    background-color: #2a4b73;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+    z-index: 9999;
+  }
+
+  .side-menu.open {
+    left: 0; /* Slide in */
+  }
+
+  .side-menu a {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    text-align: center;
+  }
+}
