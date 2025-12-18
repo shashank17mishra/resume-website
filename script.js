@@ -2,6 +2,40 @@
 function toggleMenu() {
   const menu = document.getElementById("sideMenu");
   menu.classList.toggle("open");
+
+  // Prevent body scroll when menu is open
+  if (menu.classList.contains("open")) {
+    document.body.style.overflow = "hidden";
+  } else {
+    document.body.style.overflow = "auto";
+  }
+}
+
+// CV Download Handling
+function downloadCV(event) {
+  event.preventDefault();
+  const cvUrl = event.target.getAttribute('href');
+
+  fetch(cvUrl, { method: 'HEAD' })
+    .then(response => {
+      if (response.ok) {
+        // File exists, open it
+        window.open(cvUrl, '_blank');
+      } else {
+        // File not found
+        showToast();
+      }
+    })
+    .catch(error => {
+      console.error('Error checking CV:', error);
+      showToast();
+    });
+}
+
+function showToast() {
+  const toast = document.getElementById("toast");
+  toast.className = "toast show";
+  setTimeout(function () { toast.className = toast.className.replace("show", ""); }, 3000);
 }
 
 // Typing animation with loop
@@ -13,7 +47,7 @@ let speed = 100; // typing speed in ms
 
 function typeText() {
   const currentText = typingText.textContent;
-  
+
   if (!isDeleting && idx < text.length) {
     // Typing forward
     typingText.textContent = text.substring(0, idx + 1);
@@ -89,9 +123,9 @@ window.addEventListener('scroll', () => {
   }
 });
 // Smooth scrolling for Explore button
-document.getElementById('explore-btn').addEventListener('click', function() {
-  document.getElementById('projects').scrollIntoView({ 
-    behavior: 'smooth' 
+document.getElementById('explore-btn').addEventListener('click', function () {
+  document.getElementById('projects').scrollIntoView({
+    behavior: 'smooth'
   });
 });
 document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
@@ -100,12 +134,12 @@ document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
 const scrollLinks = document.querySelectorAll('a[href^="#"]');
 
 scrollLinks.forEach(link => {
-  link.addEventListener('click', function(e) {
+  link.addEventListener('click', function (e) {
     e.preventDefault();
-    
+
     const targetId = this.getAttribute('href');
     const targetElement = document.querySelector(targetId);
-    
+
     if (targetElement) {
       targetElement.scrollIntoView({
         behavior: 'smooth'
@@ -113,10 +147,4 @@ scrollLinks.forEach(link => {
     }
   });
 });
-function toggleMenu() {
-  const menu = document.getElementById("sideMenu");
-  menu.classList.toggle("open");
 
-  // Optional: prevent body scroll when menu is open
-  document.body.style.overflow = menu.classList.contains("open") ? "hidden" : "auto";
-}

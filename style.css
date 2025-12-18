@@ -33,25 +33,50 @@ body {
   font-weight: bold;
 }
 
+/* Desktop Menu */
+.desktop-menu {
+  display: flex;
+  gap: 2rem;
+}
+
+.desktop-menu a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+  font-size: 1.1rem;
+  transition: color 0.3s ease;
+}
+
+.desktop-menu a:hover {
+  color: #2a4b73;
+}
+
+/* Mobile Menu Icon */
 .menu-icon {
-  font-size: 2rem;
+  display: none; /* Hidden on desktop */
+  font-size: 1.8rem;
   cursor: pointer;
   color: #2a4b73;
 }
 
-/* Side Menu */
+/* Side Menu (Mobile) */
 .side-menu {
   position: fixed;
   top: 0;
-  left: -220px;
+  right: -250px; /* Hidden initially */
   height: 100vh;
-  width: 200px;
+  width: 250px;
   background-color: #2a4b73;
   padding-top: 4rem;
   display: flex;
   flex-direction: column;
-  transition: 0.4s ease;
-  z-index: 999;
+  transition: right 0.3s ease;
+  z-index: 1001;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+}
+
+.side-menu.open {
+  right: 0;
 }
 
 .side-menu a {
@@ -60,14 +85,20 @@ body {
   padding: 1rem 2rem;
   font-size: 1.1rem;
   transition: background 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 .side-menu a:hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.side-menu.open {
-  left: 0;
+.close-btn {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  font-size: 2rem;
+  color: white;
+  cursor: pointer;
 }
 
 /* Hero Section */
@@ -398,29 +429,40 @@ body {
 }
 /* Mobile View Menu */
 @media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
   .side-menu {
-    position: fixed;
-    top: 0;
-    left: -100%; /* Hidden initially */
-    width: 100%; /* Full width for mobile */
-    height: 100vh;
-    background-color: #2a4b73;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    transition: left 0.3s ease;
-    z-index: 9999;
+    width: 250px; /* Keep consistent width */
   }
+}
 
-  .side-menu.open {
-    left: 0; /* Slide in */
-  }
+/* Toast Notification */
+.toast {
+  visibility: hidden;
+  min-width: 250px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 4px;
+  padding: 16px;
+  position: fixed;
+  z-index: 1002;
+  left: 50%;
+  bottom: 30px;
+  transform: translateX(-50%);
+  font-size: 17px;
+  opacity: 0;
+  transition: opacity 0.5s, bottom 0.5s;
+}
 
-  .side-menu a {
-    color: #fff;
-    font-size: 1.5rem;
-    margin: 1rem 0;
-    text-align: center;
-  }
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  bottom: 50px;
 }
