@@ -1,2 +1,0 @@
-# resume-website
-portfolio website
