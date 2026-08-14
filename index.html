@@ -1,551 +1,867 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Shashank Mishra - Data Analyst & Data Science Student. Transforming data into actionable insights through advanced analytics and machine learning." />
-  <meta name="keywords" content="data analyst, data science, portfolio, machine learning, python, SQL, visualization" />
-  <meta property="og:title" content="Shashank Mishra | Data Analyst Portfolio" />
-  <meta property="og:description" content="Transforming Data into Actionable Insights" />
-  <title>Shashank Mishra | Data Analyst Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shashank Mishra — Full-Stack Web Developer | Modern Websites & Digital Experiences</title>
+  <meta name="description" content="Full-stack web developer with 4+ years of professional experience in designing and developing modern, responsive, high-performance websites and digital experiences.">
 
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
 
-  <!-- GSAP -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js"></script>
-
-  <!-- Three.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-  <!-- Stylesheet -->
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <!-- ─── CURSOR ──────────────────────────────────────────── -->
-  <div id="cursor-dot"></div>
-  <div id="cursor-ring"></div>
+  <!-- Subtle Grain Overlay -->
+  <div class="bg-grain" aria-hidden="true"></div>
 
-  <!-- ─── LOADING SCREEN ──────────────────────────────────── -->
-  <div id="loader">
-    <div class="loader-inner">
-      <div class="loader-logo">SM</div>
-      <div class="loader-bar-wrap"><div class="loader-bar"></div></div>
-      <span class="loader-text">Loading Experience</span>
-    </div>
-  </div>
+  <!-- SITE HEADER / NAVIGATION -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#home" class="brand-logo" aria-label="Shashank Mishra Home">
+        SHASHANK MISHRA
+        <span class="dot" aria-hidden="true"></span>
+      </a>
 
-  <!-- ─── NAVIGATION ──────────────────────────────────────── -->
-  <nav id="navbar">
-    <a href="#hero" class="nav-brand" id="nav-brand">SM</a>
-    <ul class="nav-links" id="nav-links">
-      <li><a href="#about"      class="nav-link" data-section="about">About</a></li>
-      <li><a href="#skills"     class="nav-link" data-section="skills">Skills</a></li>
-      <li><a href="#projects"   class="nav-link" data-section="projects">Projects</a></li>
-      <li><a href="#experience" class="nav-link" data-section="experience">Experience</a></li>
-      <li><a href="#contact"    class="nav-link" data-section="contact">Contact</a></li>
-    </ul>
-    <a href="assets/Resume_Shashank_Mishra.pdf" class="btn-resume" download id="resume-btn">
-      <span>Resume</span><i class="fa-solid fa-download"></i>
-    </a>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
+      <nav class="nav-links" aria-label="Primary Navigation">
+        <a href="#selected-work" class="nav-link">Work</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#more-work" class="nav-link">Archive</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
 
-  <!-- ─── MOBILE MENU ─────────────────────────────────────── -->
-  <div class="mobile-menu" id="mobile-menu">
-    <ul>
-      <li><a href="#about"      class="mobile-link">About</a></li>
-      <li><a href="#skills"     class="mobile-link">Skills</a></li>
-      <li><a href="#projects"   class="mobile-link">Projects</a></li>
-      <li><a href="#experience" class="mobile-link">Experience</a></li>
-      <li><a href="#contact"    class="mobile-link">Contact</a></li>
-    </ul>
-  </div>
-
-  <!-- ─── 3D MODEL CONTAINER ────────────────────────── -->
-  <div id="model-container">
-    <div class="sketchfab-embed-wrapper">
-      <iframe 
-        id="sketchfab-iframe"
-        title="Meet MAT contest - Computer Buddy" 
-        frameborder="0" 
-        allowfullscreen 
-        mozallowfullscreen="true" 
-        webkitallowfullscreen="true" 
-        allow="autoplay; fullscreen; xr-spatial-tracking" 
-        xr-spatial-tracking 
-        execution-while-out-of-viewport 
-        execution-while-not-rendered 
-        web-share 
-        src="https://sketchfab.com/models/7ec7eae8c05e4ca2b45069f4f216517a/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_watermark=0&ui_hint=0&transparent=1"> 
-      </iframe>
-    </div>
-  </div>
-
-  <!-- ─── 3D CANVAS (background environment) ──────────────── -->
-  <canvas id="three-canvas"></canvas>
-
-  <!-- ─── SCROLL INDICATOR ────────────────────────────────── -->
-  <div class="scroll-indicator" id="scroll-indicator">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-
-  <!-- ─── PROGRESS BAR ────────────────────────────────────── -->
-  <div class="scroll-progress" id="scroll-progress"></div>
-
-  <!-- ══════════════════════════════════════════════════════ -->
-  <!--  SECTIONS                                             -->
-  <!-- ══════════════════════════════════════════════════════ -->
-
-  <!-- 1. HERO ─────────────────────────────────────────────── -->
-  <section id="hero" class="section hero-section">
-    <!-- Blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
-    <!-- Grid -->
-    <div class="grid-overlay"></div>
-
-    <div class="hero-content">
-      <div class="hero-badge">
-        <span class="badge-dot"></span>
-        <span>Available for Opportunities</span>
-      </div>
-      <h1 class="hero-name">
-        <span class="name-line" data-text="Shashank">Shashank</span>
-        <span class="name-line gradient-text" data-text="Mishra">Mishra</span>
-      </h1>
-      <p class="hero-role">
-        Data Analyst <span class="divider">·</span>
-        <span id="typed-role"></span>
-        <span class="cursor-blink">|</span>
-      </p>
-      <p class="hero-tagline">Translating complex datasets into <em>actionable insights</em> to support business decisions.</p>
-      <div class="hero-cta">
-        <a href="#projects" class="btn btn-primary" id="cta-projects">
-          <span>View Projects</span>
-          <div class="btn-ripple"></div>
-        </a>
-        <a href="assets/Resume_Shashank_Mishra.pdf" class="btn btn-secondary" download id="cta-resume">
-          <span>Download Resume</span>
-          <i class="fa-solid fa-arrow-down"></i>
-        </a>
-      </div>
-      <div class="hero-stats">
-        <div class="stat-item">
-          <span class="stat-num" data-target="15">0</span><span>+</span>
-          <span class="stat-label">Projects</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="5">0</span><span>+</span>
-          <span class="stat-label">Technologies</span>
-        </div>
-        <div class="stat-divider"></div>
-        <div class="stat-item">
-          <span class="stat-num" data-target="2">0</span><span>+</span>
-          <span class="stat-label">Years Learning</span>
-        </div>
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-sm open-contact-btn" id="navContactBtn">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-up-right" class="btn-icon-arrow"></i>
+        </button>
       </div>
     </div>
+  </header>
 
-    <!-- Floating data chips -->
-    <div class="data-chip chip-1"><i class="fa-solid fa-chart-line"></i> Analytics</div>
-    <div class="data-chip chip-2"><i class="fa-solid fa-brain"></i> ML Models</div>
-    <div class="data-chip chip-3"><i class="fa-solid fa-database"></i> SQL</div>
-    <div class="data-chip chip-4"><i class="fa-brands fa-python"></i> Python</div>
-  </section>
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero-section" id="home">
+      <div class="container">
+        <div class="hero-editorial-grid">
+          <div class="hero-content reveal-on-scroll">
+            <div class="eyebrow eyebrow-badge">
+              <i data-lucide="code" style="width: 14px; height: 14px;"></i>
+              <span>FULL-STACK WEB DEVELOPER · 4+ YEARS EXPERIENCE</span>
+            </div>
 
-  <!-- 2. ABOUT ─────────────────────────────────────────────── -->
-  <section id="about" class="section about-section">
-    <div class="blob blob-4"></div>
-    <div class="section-container">
-      <div class="section-label reveal-up">About Me</div>
-      <div class="about-grid">
-        <div class="about-text reveal-up">
-          <h2 class="section-title">Turning <span class="gradient-text">Raw Data</span><br/>into Stories</h2>
-          <p class="about-desc">
-            Results-driven Data Analyst with expertise in Python, SQL, Excel, and Power BI. Skilled in data cleaning, ETL, KPI reporting, and dashboard development.
+            <h1 class="hero-headline">
+              I build digital experiences that look as good as they perform.
+            </h1>
+
+            <p class="hero-supporting">
+              Full-stack web developer specializing in modern websites, responsive interfaces, scalable web applications, and conversion-focused digital experiences.
+            </p>
+
+            <div class="hero-ctas">
+              <a href="#selected-work" class="btn btn-primary">
+                <span>View Selected Work</span>
+                <i data-lucide="arrow-down" class="btn-icon-arrow"></i>
+              </a>
+
+              <button class="btn btn-secondary open-contact-btn">
+                <span>Let's Work Together</span>
+              </button>
+
+              <div class="status-badge">
+                <span class="status-dot"></span>
+                <span>Available for selected projects</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pinterest Editorial Portrait Showcase Card -->
+          <div class="hero-portrait-card reveal-on-scroll">
+            <div class="portrait-image-wrapper">
+              <img src="WhatsApp Image 2026-08-12 at 11.42.06 AM.jpeg" alt="Shashank Mishra — Full-Stack Web Developer" class="portrait-img" />
+              <div class="portrait-overlay-gradient"></div>
+              
+              <div class="portrait-floating-badge">
+                <div class="badge-title">Shashank Mishra</div>
+                <div class="badge-sub">Full-Stack Web Developer</div>
+              </div>
+
+              <div class="portrait-exp-tag">
+                <span>4+ YRS EXP</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-tech-cloud reveal-on-scroll">
+          <span class="tech-cloud-label">Stack Expertise:</span>
+          <div class="tech-cloud-items">
+            <span class="tech-tag">WordPress</span>
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">HTML</span>
+            <span class="tech-tag">CSS</span>
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">APIs</span>
+            <span class="tech-tag">Databases</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="section about-section" id="about">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">ABOUT</div>
+          <h2 class="section-title">Design-minded developer. Technology-driven builder.</h2>
+        </div>
+
+        <div class="about-grid">
+          <div class="reveal-on-scroll">
+            <p class="about-main-copy">
+              With 4+ years of experience in web development, I combine clean interface design with robust development to create websites that are fast, responsive, scalable, and built around real business goals.
+            </p>
+
+            <div class="about-author-pill">
+              <img src="WhatsApp Image 2026-08-12 at 11.42.06 AM.jpeg" alt="Shashank Mishra portrait" class="author-pill-img" />
+              <div class="author-pill-info">
+                <span class="author-pill-name">Shashank Mishra</span>
+                <span class="author-pill-title">Full-Stack Web Developer · 4+ Years Experience</span>
+              </div>
+            </div>
+
+            <div class="expertise-chips">
+              <span class="expertise-chip">Frontend Development</span>
+              <span class="expertise-chip">Backend Development</span>
+              <span class="expertise-chip">Full-stack Applications</span>
+              <span class="expertise-chip">WordPress Development</span>
+              <span class="expertise-chip">E-commerce</span>
+              <span class="expertise-chip">Responsive UI</span>
+              <span class="expertise-chip">API Integration</span>
+              <span class="expertise-chip">Database Integration</span>
+              <span class="expertise-chip">Performance Optimization</span>
+              <span class="expertise-chip">Website Deployment</span>
+              <span class="expertise-chip">Conversion-Focused Experiences</span>
+            </div>
+          </div>
+
+          <div class="stats-grid reveal-on-scroll">
+            <div class="stat-card">
+              <div class="stat-number" data-target="4">4+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number" data-target="24">24+</div>
+              <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">Full-Stack</div>
+              <div class="stat-label">Development</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-number">End-to-End</div>
+              <div class="stat-label">Web Solutions</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TECHNOLOGY & SKILLS SECTION -->
+    <section class="section skills-section" id="skills">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">TECHNOLOGY & STACK</div>
+          <h2 class="section-title">Engineered for modern performance.</h2>
+          <p class="section-subtitle">A balanced full-stack skill set spanning modern JavaScript frameworks, robust backend APIs, custom CMS platforms, and responsive design systems.</p>
+        </div>
+      </div>
+
+      <!-- Tech Marquee -->
+      <div class="tech-marquee-wrapper" aria-hidden="true">
+        <div class="marquee-track">
+          <div class="marquee-item">HTML5 <span class="bullet">•</span></div>
+          <div class="marquee-item">CSS3 <span class="bullet">•</span></div>
+          <div class="marquee-item">JavaScript <span class="bullet">•</span></div>
+          <div class="marquee-item">React <span class="bullet">•</span></div>
+          <div class="marquee-item">Next.js <span class="bullet">•</span></div>
+          <div class="marquee-item">Node.js <span class="bullet">•</span></div>
+          <div class="marquee-item">PHP <span class="bullet">•</span></div>
+          <div class="marquee-item">WordPress <span class="bullet">•</span></div>
+          <div class="marquee-item">Data Analytics <span class="bullet">•</span></div>
+          <div class="marquee-item">Data Science <span class="bullet">•</span></div>
+          <div class="marquee-item">Automations <span class="bullet">•</span></div>
+          <div class="marquee-item">REST APIs <span class="bullet">•</span></div>
+          <div class="marquee-item">MySQL <span class="bullet">•</span></div>
+          <div class="marquee-item">MongoDB <span class="bullet">•</span></div>
+          <!-- Duplicate for smooth seamless loop -->
+          <div class="marquee-item">HTML5 <span class="bullet">•</span></div>
+          <div class="marquee-item">CSS3 <span class="bullet">•</span></div>
+          <div class="marquee-item">JavaScript <span class="bullet">•</span></div>
+          <div class="marquee-item">React <span class="bullet">•</span></div>
+          <div class="marquee-item">Next.js <span class="bullet">•</span></div>
+          <div class="marquee-item">Node.js <span class="bullet">•</span></div>
+          <div class="marquee-item">PHP <span class="bullet">•</span></div>
+          <div class="marquee-item">WordPress <span class="bullet">•</span></div>
+          <div class="marquee-item">Data Analytics <span class="bullet">•</span></div>
+          <div class="marquee-item">Data Science <span class="bullet">•</span></div>
+          <div class="marquee-item">Automations <span class="bullet">•</span></div>
+          <div class="marquee-item">REST APIs <span class="bullet">•</span></div>
+          <div class="marquee-item">MySQL <span class="bullet">•</span></div>
+          <div class="marquee-item">MongoDB <span class="bullet">•</span></div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="skills-matrix reveal-on-scroll">
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>Frontend</span>
+              <i data-lucide="layout" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">HTML5</li>
+              <li class="skill-item">CSS3</li>
+              <li class="skill-item">JavaScript</li>
+              <li class="skill-item">React</li>
+              <li class="skill-item">Next.js</li>
+              <li class="skill-item">Responsive UI</li>
+              <li class="skill-item">Modern UI Architecture</li>
+            </ul>
+          </div>
+
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>Backend</span>
+              <i data-lucide="server" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">Node.js</li>
+              <li class="skill-item">PHP</li>
+              <li class="skill-item">REST APIs</li>
+              <li class="skill-item">Authentication</li>
+              <li class="skill-item">Server-side Development</li>
+            </ul>
+          </div>
+
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>CMS & E-commerce</span>
+              <i data-lucide="shopping-bag" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">WordPress</li>
+              <li class="skill-item">WooCommerce</li>
+              <li class="skill-item">Custom CMS</li>
+              <li class="skill-item">E-commerce Systems</li>
+            </ul>
+          </div>
+
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>Database & Infra</span>
+              <i data-lucide="database" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">MySQL</li>
+              <li class="skill-item">MongoDB</li>
+              <li class="skill-item">API Integration</li>
+              <li class="skill-item">Hosting & Deployment</li>
+              <li class="skill-item">Domain & DNS</li>
+              <li class="skill-item">Performance Optimization</li>
+            </ul>
+          </div>
+
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>Design</span>
+              <i data-lucide="figma" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">UI Design</li>
+              <li class="skill-item">UX Principles</li>
+              <li class="skill-item">Typography</li>
+              <li class="skill-item">Responsive Design</li>
+              <li class="skill-item">Interaction Design</li>
+              <li class="skill-item">Visual Communication</li>
+            </ul>
+          </div>
+
+          <div class="skill-category-card">
+            <div class="category-title">
+              <span>Data & Automation</span>
+              <i data-lucide="bar-chart-3" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+            </div>
+            <ul class="skill-list">
+              <li class="skill-item">Data Analytics</li>
+              <li class="skill-item">Data Science</li>
+              <li class="skill-item">Process Automation</li>
+              <li class="skill-item">API & Workflow Integration</li>
+              <li class="skill-item">Data Visualization</li>
+              <li class="skill-item">Python Pipelines</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK SECTION -->
+    <section class="section selected-work-section" id="selected-work">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">FEATURED PROJECTS</div>
+          <h2 class="section-title">Selected Work</h2>
+          <p class="section-subtitle">A selection of websites and digital experiences built across education, technology, fashion, travel, hospitality, healthcare, media, and business.</p>
+        </div>
+
+        <div class="selected-work-list">
+          <!-- Project 01 -->
+          <div class="project-card reveal-on-scroll" data-project-id="credible-create">
+            <div class="project-preview">
+              <div class="browser-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-url">crediblecreate.com</span>
+                </div>
+                <div class="mockup-body-img">
+                  <img src="credible create.png" alt="Credible Create Website Mockup" class="project-real-img" />
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">01</span>
+                <span class="project-category">Education · Robotics · AI · IoT</span>
+              </div>
+              <h3 class="project-title">Credible Create</h3>
+              <p class="project-description">
+                Developed a modern, responsive website for Credible Create, an education and innovation platform focused on Robotics, AI, IoT, and Drone Technology. Built structured program pages, interactive UI sections, responsive layouts, and conversion-focused user flows for a seamless experience across devices.
+              </p>
+              <button class="btn btn-secondary btn-sm view-project-btn" data-url="https://crediblecreate.com" data-title="Credible Create" data-desc="Education, Robotics, AI & IoT platform with structured course modules and responsive UI.">
+                <span>View Project</span>
+                <i data-lucide="arrow-up-right" class="btn-icon-arrow"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 02 (Reverse Layout) -->
+          <div class="project-card reverse reveal-on-scroll" data-project-id="morphy-chess">
+            <div class="project-preview">
+              <div class="browser-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-url">morphychess.com</span>
+                </div>
+                <div class="mockup-body-img">
+                  <img src="morphy.png" alt="Morphy Chess Academy Website Mockup" class="project-real-img" />
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">02</span>
+                <span class="project-category">Education · EdTech · Web Development</span>
+              </div>
+              <h3 class="project-title">Morphy Chess</h3>
+              <p class="project-description">
+                Developed a modern responsive website for an online chess academy featuring structured course pages, interactive UI sections, parent testimonials, FAQ content, blog insights, and a free-demo booking flow with email verification.
+              </p>
+              <button class="btn btn-secondary btn-sm view-project-btn" data-url="https://morphychess.com" data-title="Morphy Chess" data-desc="EdTech platform for online chess academy with demo booking flows and course management.">
+                <span>View Project</span>
+                <i data-lucide="arrow-up-right" class="btn-icon-arrow"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Project 03 -->
+          <div class="project-card reveal-on-scroll" data-project-id="suela-premlata">
+            <div class="project-preview">
+              <div class="browser-mockup">
+                <div class="mockup-header">
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-dot"></span>
+                  <span class="mockup-url">suelabypremlata.com</span>
+                </div>
+                <div class="mockup-body-img">
+                  <img src="suela.png" alt="Suela by Premlata Fashion Storefront Mockup" class="project-real-img" />
+                </div>
+              </div>
+            </div>
+
+            <div class="project-info">
+              <div class="project-meta">
+                <span class="project-number">03</span>
+                <span class="project-category">Fashion · E-commerce · UI/UX</span>
+              </div>
+              <h3 class="project-title">Suela by Premlata</h3>
+              <p class="project-description">
+                Developed a premium fashion e-commerce platform with product catalogs, collections, shopping features, customer accounts, wishlist, cart, blog, and responsive UI, in collaboration with Aman Tiwari.
+              </p>
+              <button class="btn btn-secondary btn-sm view-project-btn" data-url="https://suelabypremlata.com" data-title="Suela by Premlata" data-desc="Luxury fashion couture storefront engineered with product catalog, wishlist, and cart.">
+                <span>View Project</span>
+                <i data-lucide="arrow-up-right" class="btn-icon-arrow"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- COMPLETE WORK ARCHIVE (MORE WORK) SECTION -->
+    <section class="section archive-section" id="more-work">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">PORTFOLIO INDEX</div>
+          <h2 class="section-title">More Work</h2>
+          <p class="section-subtitle">A growing collection of websites and digital experiences developed across multiple industries.</p>
+        </div>
+
+        <div class="archive-controls reveal-on-scroll">
+          <i data-lucide="search" style="width: 18px; height: 18px; color: var(--text-muted);"></i>
+          <input type="text" id="archiveSearchInput" class="archive-search-input" placeholder="Search archive by domain or industry..." aria-label="Search project archive">
+        </div>
+
+        <div class="archive-list reveal-on-scroll" id="archiveList">
+          <div class="archive-item" data-domain="www.indiatellama.com" data-category="Media & Publishing">
+            <span class="archive-num">01</span>
+            <span class="archive-domain">www.indiatellama.com</span>
+            <span class="archive-tag">Media & Publishing</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="indiacotidiana.com" data-category="Culture & Travel">
+            <span class="archive-num">02</span>
+            <span class="archive-domain">indiacotidiana.com</span>
+            <span class="archive-tag">Culture & Travel</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="allindiadestination.com" data-category="Travel & Tourism">
+            <span class="archive-num">03</span>
+            <span class="archive-domain">allindiadestination.com</span>
+            <span class="archive-tag">Travel & Tourism</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="www.indiatellama.com" data-category="Media & News">
+            <span class="archive-num">04</span>
+            <span class="archive-domain">www.indiatellama.com</span>
+            <span class="archive-tag">Media & News</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="rammandirayodhyatours.com" data-category="Tourism & Pilgrimage">
+            <span class="archive-num">05</span>
+            <span class="archive-domain">rammandirayodhyatours.com</span>
+            <span class="archive-tag">Tourism & Pilgrimage</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="urbanrugsandcarpets.com" data-category="E-Commerce & Home">
+            <span class="archive-num">06</span>
+            <span class="archive-domain">urbanrugsandcarpets.com</span>
+            <span class="archive-tag">E-Commerce & Home</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="hotelhrishikeshhigh.com" data-category="Hospitality & Hotel">
+            <span class="archive-num">07</span>
+            <span class="archive-domain">hotelhrishikeshhigh.com</span>
+            <span class="archive-tag">Hospitality & Hotel</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="adbhutmedia.com" data-category="Digital Agency & Media">
+            <span class="archive-num">08</span>
+            <span class="archive-domain">adbhutmedia.com</span>
+            <span class="archive-tag">Digital Agency & Media</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="bbsdegreecollege.org.in" data-category="Education & Academy">
+            <span class="archive-num">09</span>
+            <span class="archive-domain">bbsdegreecollege.org.in</span>
+            <span class="archive-tag">Education & Academy</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="fileconvertgo.com" data-category="SaaS Tool & Utilities">
+            <span class="archive-num">10</span>
+            <span class="archive-domain">fileconvertgo.com</span>
+            <span class="archive-tag">SaaS Tool & Utilities</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="www.indiacotidiana.com" data-category="Editorial Portal">
+            <span class="archive-num">11</span>
+            <span class="archive-domain">www.indiacotidiana.com</span>
+            <span class="archive-tag">Editorial Portal</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="alphaaestheticsclinics.com" data-category="Healthcare & Medical">
+            <span class="archive-num">12</span>
+            <span class="archive-domain">alphaaestheticsclinics.com</span>
+            <span class="archive-tag">Healthcare & Medical</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="utdigitalmedia.com" data-category="Digital Marketing">
+            <span class="archive-num">13</span>
+            <span class="archive-domain">utdigitalmedia.com</span>
+            <span class="archive-tag">Digital Marketing</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="eternitethreads.com" data-category="Apparel & Fashion">
+            <span class="archive-num">14</span>
+            <span class="archive-domain">eternitethreads.com</span>
+            <span class="archive-tag">Apparel & Fashion</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="dreamdecor.ae" data-category="Interior & Decor UAE">
+            <span class="archive-num">15</span>
+            <span class="archive-domain">dreamdecor.ae</span>
+            <span class="archive-tag">Interior & Decor UAE</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="eps.org.in" data-category="Education Institution">
+            <span class="archive-num">16</span>
+            <span class="archive-domain">eps.org.in</span>
+            <span class="archive-tag">Education Institution</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="thedermabright.com" data-category="Skincare & Wellness">
+            <span class="archive-num">17</span>
+            <span class="archive-domain">thedermabright.com</span>
+            <span class="archive-tag">Skincare & Wellness</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="thewalldesigners.in" data-category="Architecture & Decor">
+            <span class="archive-num">18</span>
+            <span class="archive-domain">thewalldesigners.in</span>
+            <span class="archive-tag">Architecture & Decor</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="xaviersbahraich.com" data-category="School & Education">
+            <span class="archive-num">19</span>
+            <span class="archive-domain">xaviersbahraich.com</span>
+            <span class="archive-tag">School & Education</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="detalia.ae" data-category="Design Studio UAE">
+            <span class="archive-num">20</span>
+            <span class="archive-domain">detalia.ae</span>
+            <span class="archive-tag">Design Studio UAE</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+
+          <div class="archive-item" data-domain="toppersinstitutelucknow.com" data-category="EdTech Coaching">
+            <span class="archive-num">21</span>
+            <span class="archive-domain">toppersinstitutelucknow.com</span>
+            <span class="archive-tag">EdTech Coaching</span>
+            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- UI DESIGN SHOWCASE MASONRY GALLERY -->
+    <section class="section ui-showcase-section" id="ui-showcase">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">DESIGN SYSTEM & EXPLORATION</div>
+          <h2 class="section-title">UI Design Showcase</h2>
+          <p class="section-subtitle">Selected interface explorations focused on visual hierarchy, usability, responsive layouts, and modern interaction patterns.</p>
+        </div>
+
+        <div class="ui-showcase-grid reveal-on-scroll">
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="indiatellama.png" alt="India Tell Ama Media Website" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">www.indiatellama.com</h4>
+              <p class="showcase-sub">Media & News Publishing Platform · Editorial UI Architecture.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="india cotidiana.png" alt="India Cotidiana Culture Portal" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">indiacotidiana.com</h4>
+              <p class="showcase-sub">Culture & Travel Portal · Multi-language Editorial Layout.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="image copy 4.png" alt="Adbhut Media Agency Website" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">adbhutmedia.com</h4>
+              <p class="showcase-sub">Digital Media & Agency · Modern Bold Typography & Layout.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="image copy 3.png" alt="Urban Rugs and Carpets E-Commerce" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">urbanrugsandcarpets.com</h4>
+              <p class="showcase-sub">Luxury E-Commerce & Home Decor · Handcrafted Collections.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="image.png" alt="Ram Mandir Ayodhya Tours Portal" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">rammandirayodhyatours.com</h4>
+              <p class="showcase-sub">Tourism & Pilgrimage Portal · Conversion-Focused UI Design.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="image copy 2.png" alt="Detalia Interior Fit-Out UAE Website" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">detalia.ae</h4>
+              <p class="showcase-sub">Interior Fit-Out Studio UAE · High-End Minimalist Architecture.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="image copy.png" alt="St Xavier Sr Sec School Website" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">xaviersbahraich.com</h4>
+              <p class="showcase-sub">Education Institution · Structured Academic Portal Layout.</p>
+            </div>
+          </div>
+
+          <div class="showcase-card">
+            <div class="showcase-visual-img">
+              <img src="morphy.png" alt="Morphy Chess EdTech UI" class="showcase-real-img" />
+            </div>
+            <div class="showcase-caption">
+              <h4 class="showcase-title">morphychess.com</h4>
+              <p class="showcase-sub">EdTech Academy · Interactive Learning & Booking Workflows.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DEVELOPMENT PHILOSOPHY SECTION -->
+    <section class="section philosophy-section" id="philosophy">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">CORE PRINCIPLES</div>
+          <h2 class="section-title">Built with purpose. Designed for people.</h2>
+        </div>
+
+        <div class="philosophy-grid reveal-on-scroll">
+          <div class="philosophy-card">
+            <div class="philosophy-num">01</div>
+            <h3 class="philosophy-title">Clean by Design</h3>
+            <p class="philosophy-copy">
+              Interfaces should be simple, intuitive, and visually intentional. Every pixel, margin, and typographic line height exists to serve clarity.
+            </p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-num">02</div>
+            <h3 class="philosophy-title">Built to Perform</h3>
+            <p class="philosophy-copy">
+              Fast, responsive, scalable websites engineered for real-world use. Code is structured cleanly for longevity, speed, and easy maintenance.
+            </p>
+          </div>
+
+          <div class="philosophy-card">
+            <div class="philosophy-num">03</div>
+            <h3 class="philosophy-title">Designed to Convert</h3>
+            <p class="philosophy-copy">
+              Every layout and interaction should support a clear user or business objective, guiding visitors effortlessly toward key action points.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE SECTION -->
+    <section class="section experience-section" id="experience">
+      <div class="container">
+        <div class="section-header-block reveal-on-scroll">
+          <div class="eyebrow">CAREER ROADMAP</div>
+          <h2 class="section-title">4+ Years of Web Development</h2>
+          <p class="section-subtitle">Continuous professional development across frontend, backend, CMS, e-commerce, API integrations, and cloud deployments.</p>
+        </div>
+
+        <div class="experience-timeline reveal-on-scroll">
+          <div class="timeline-row">
+            <div class="timeline-period">Full-Stack Development</div>
+            <div class="timeline-content">
+              <h3>Custom Web Applications & Modern JS Frameworks</h3>
+              <p>Designing and building full-stack web applications using React, Next.js, Node.js, REST APIs, and databases with clean client-server architecture.</p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-period">CMS & E-Commerce</div>
+            <div class="timeline-content">
+              <h3>WordPress & Custom Storefront Solutions</h3>
+              <p>Developing high-conversion custom WordPress themes, WooCommerce stores, custom plugin logic, and tailored content management portals.</p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-period">Frontend Architecture</div>
+            <div class="timeline-content">
+              <h3>Responsive UI, Typography & Performance</h3>
+              <p>Crafting high-performance, pixel-perfect user interfaces, fluid mobile layouts, design systems, and SEO-optimized website architecture.</p>
+            </div>
+          </div>
+
+          <div class="timeline-row">
+            <div class="timeline-period">Infra & Optimization</div>
+            <div class="timeline-content">
+              <h3>Deployment, DNS, Security & Speed</h3>
+              <p>Handling domain configuration, SSL certificates, server setups, database management, asset optimization, and speed tuning.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT / FINAL CTA SECTION -->
+    <section class="section contact-section" id="contact">
+      <div class="container">
+        <div class="contact-card reveal-on-scroll">
+          <div class="eyebrow eyebrow-badge" style="margin-bottom: 1.5rem;">LET'S CONNECT</div>
+          <h2 class="contact-headline">Let's build something remarkable.</h2>
+          <p class="contact-supporting">
+            Have an idea, product, business, or website that needs to come to life? Let's turn it into a fast, thoughtful, and memorable digital experience.
           </p>
-          <p class="about-desc">
-            Completed internship at Infoseek and participated in a GenAI-powered Data Analytics Job Simulation through Forage platform. Adept at translating complex datasets into actionable insights to support business decisions.
-          </p>
-          <div class="about-tags">
-            <span class="tag">Problem Solver</span>
-            <span class="tag">Quick Learner</span>
-            <span class="tag">Time Management</span>
-            <span class="tag">Team Work</span>
-            <span class="tag">Adaptability</span>
-          </div>
-        </div>
-        <div class="about-visual reveal-right">
-          <div class="visual-card glass-card">
-            <div class="mini-chart">
-              <div class="chart-bar" style="--h:60%"><span>Q1</span></div>
-              <div class="chart-bar active" style="--h:85%"><span>Q2</span></div>
-              <div class="chart-bar" style="--h:45%"><span>Q3</span></div>
-              <div class="chart-bar active" style="--h:92%"><span>Q4</span></div>
-              <div class="chart-bar" style="--h:70%"><span>Q5</span></div>
-            </div>
-            <div class="card-label">Analytics Dashboard</div>
-          </div>
-          <div class="about-badge glass-card">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <div>
-              <strong>B.Tech / CS (Data Science)</strong>
-              <span>BNCET College, Lucknow</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- 3. SKILLS ────────────────────────────────────────────── -->
-  <section id="skills" class="section skills-section">
-    <div class="blob blob-5"></div>
-    <div class="section-container">
-      <div class="section-label reveal-up">Expertise</div>
-      <h2 class="section-title text-center reveal-up">My <span class="gradient-text">Tech Stack</span></h2>
-      <p class="section-subtitle reveal-up">Tools and technologies I use to build data-driven solutions</p>
+          <button class="btn btn-primary open-contact-btn" style="padding: 1rem 2.25rem; font-size: 1.05rem;">
+            <span>Start a Project</span>
+            <i data-lucide="arrow-right" class="btn-icon-arrow"></i>
+          </button>
 
-      <div class="skills-grid">
-        <!-- Card 1 -->
-        <div class="skill-category glass-card reveal-up" data-delay="0">
-          <div class="skill-icon-wrap"><i class="fa-brands fa-python"></i></div>
-          <h3>Programming & DB</h3>
-          <div class="skill-list">
-            <div class="skill-item"><span>Python</span><div class="skill-bar"><div class="skill-fill" data-w="90%"></div></div></div>
-            <div class="skill-item"><span>MySQL/SQL Server</span><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
-            <div class="skill-item"><span>C</span><div class="skill-bar"><div class="skill-fill" data-w="75%"></div></div></div>
-          </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="skill-category glass-card reveal-up" data-delay="100">
-          <div class="skill-icon-wrap"><i class="fa-solid fa-chart-line"></i></div>
-          <h3>Analytics & Viz</h3>
-          <div class="skill-list">
-            <div class="skill-item"><span>Excel (VLOOKUP/Pivot)</span><div class="skill-bar"><div class="skill-fill" data-w="92%"></div></div></div>
-            <div class="skill-item"><span>Power BI</span><div class="skill-bar"><div class="skill-fill" data-w="90%"></div></div></div>
-            <div class="skill-item"><span>Pandas / NumPy</span><div class="skill-bar"><div class="skill-fill" data-w="92%"></div></div></div>
-          </div>
-        </div>
-        <!-- Card 3 -->
-        <div class="skill-category glass-card reveal-up" data-delay="200">
-          <div class="skill-icon-wrap"><i class="fa-solid fa-brain"></i></div>
-          <h3>Machine Learning</h3>
-          <div class="skill-list">
-            <div class="skill-item"><span>Classification & Regression</span><div class="skill-bar"><div class="skill-fill" data-w="82%"></div></div></div>
-            <div class="skill-item"><span>Clustering</span><div class="skill-bar"><div class="skill-fill" data-w="75%"></div></div></div>
-            <div class="skill-item"><span>Preprocessing</span><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
-          </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="skill-category glass-card reveal-up" data-delay="300">
-          <div class="skill-icon-wrap"><i class="fa-solid fa-gears"></i></div>
-          <h3>Competencies</h3>
-          <div class="skill-list">
-            <div class="skill-item"><span>Data Cleaning / ETL</span><div class="skill-bar"><div class="skill-fill" data-w="90%"></div></div></div>
-            <div class="skill-item"><span>Dashboard Dev</span><div class="skill-bar"><div class="skill-fill" data-w="88%"></div></div></div>
-            <div class="skill-item"><span>KPI Reporting</span><div class="skill-bar"><div class="skill-fill" data-w="85%"></div></div></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Tools -->
-      <div class="tools-row reveal-up">
-        <span class="tool-chip"><i class="fa-brands fa-figma"></i> Figma</span>
-        <span class="tool-chip"><i class="fa-brands fa-github"></i> Git/GitHub</span>
-        <span class="tool-chip">📓 Jupyter/Colab</span>
-        <span class="tool-chip">⚡ Flask API</span>
-        <span class="tool-chip">👁️ OpenCV</span>
-        <span class="tool-chip">🛠️ SQL Workbench</span>
-        <span class="tool-chip">🧩 DSA</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 4. PROJECTS ──────────────────────────────────────────── -->
-  <section id="projects" class="section projects-section">
-    <div class="blob blob-6"></div>
-    <div class="section-container">
-      <div class="section-label reveal-up">Portfolio</div>
-      <h2 class="section-title text-center reveal-up"><span class="gradient-text">Featured</span> Projects</h2>
-      <p class="section-subtitle reveal-up">Real-world data problems solved with creative analytical thinking</p>
-
-      <div class="projects-grid">
-
-        <article class="project-card glass-card reveal-up" data-delay="0">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-num">01</div>
-            <div class="project-links">
-              <a href="https://github.com/shashank17mishra" target="_blank" aria-label="GitHub" class="icon-link"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <h3 class="project-title">WhatsApp Chat Analyzer</h3>
-          <p class="project-desc">End-to-end data science app using NLP. Features regex-based preprocessing, sentiment analysis, and interactive visualizations with Streamlit and Plotly.</p>
-          <div class="project-tech">
-            <span>Python</span><span>NLP</span><span>Pandas</span><span>Streamlit</span>
-          </div>
-          <div class="project-impact">
-            <i class="fa-solid fa-bolt"></i>
-            <span>Interactive Sentiment & Chat Visuals</span>
-          </div>
-        </article>
-
-        <article class="project-card glass-card reveal-up" data-delay="100">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-num">02</div>
-            <div class="project-links">
-              <a href="https://github.com/shashank17mishra" target="_blank" aria-label="GitHub" class="icon-link"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <h3 class="project-title">Automobile Fuel Analytics</h3>
-          <p class="project-desc">Interactive Power BI dashboard for fuel efficiency. Utilizes advanced DAX for trend forecasting and detailed decomposition analysis.</p>
-          <div class="project-tech">
-            <span>Power BI</span><span>DAX</span><span>Forecasting</span>
-          </div>
-          <div class="project-impact">
-            <i class="fa-solid fa-gas-pump"></i>
-            <span>Efficiency Decomposition & Insights</span>
-          </div>
-        </article>
-
-        <article class="project-card glass-card reveal-up" data-delay="200">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-num">03</div>
-            <div class="project-links">
-              <a href="https://github.com/shashank17mishra" target="_blank" aria-label="GitHub" class="icon-link"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <h3 class="project-title">GDP Analysis Pipeline</h3>
-          <p class="project-desc">Automated visualization suite for 56 countries (1960–2018). Provides comparative growth insights and economic trend analysis using Python.</p>
-          <div class="project-tech">
-            <span>Python</span><span>Matplotlib</span><span>Seaborn</span>
-          </div>
-          <div class="project-impact">
-            <i class="fa-solid fa-earth-americas"></i>
-            <span>Longitudinal Economic Visualization</span>
-          </div>
-        </article>
-
-        <article class="project-card glass-card reveal-up" data-delay="300">
-          <div class="project-glow"></div>
-          <div class="project-header">
-            <div class="project-num">04</div>
-            <div class="project-links">
-              <a href="https://github.com/shashank17mishra" target="_blank" aria-label="GitHub" class="icon-link"><i class="fa-brands fa-github"></i></a>
-            </div>
-          </div>
-          <h3 class="project-title">Retail BI System</h3>
-          <p class="project-desc">Designed a SQL-driven analytics system using CTEs and window functions to uncover revenue and customer trends from 1,000+ transactions.</p>
-          <div class="project-tech">
-            <span>SQL</span><span>MySQL Workbench</span><span>CTEs</span>
-          </div>
-          <div class="project-impact">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Trend Discovery & Revenue Analysis</span>
-          </div>
-        </article>
-
-      </div>
-
-      <div class="projects-footer reveal-up">
-        <a href="https://github.com/shashank17mishra" target="_blank" class="btn btn-outline">
-          <i class="fa-brands fa-github"></i>
-          <span>Check Out More on GitHub</span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. EXPERIENCE ────────────────────────────────────────── -->
-  <section id="experience" class="section experience-section">
-    <div class="blob blob-7"></div>
-    <div class="section-container">
-      <div class="section-label reveal-up">Journey</div>
-      <h2 class="section-title text-center reveal-up">My <span class="gradient-text">Experience</span></h2>
-
-      <div class="timeline">
-        <div class="timeline-line"></div>
-
-        <div class="timeline-item reveal-timeline" data-side="left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card glass-card">
-            <div class="tl-header">
-              <div>
-                <h3>Lead – Data Science</h3>
-                <span class="tl-company">Google Developer Group (GDG BNCET)</span>
-              </div>
-              <span class="tl-date">Sep 2024 – Present</span>
-            </div>
-            <p>Conducted 5+ workshops for 100+ students on Python, SQL, and Power BI, boosting project completion by 30%. Mentored a team in delivering real-world analytics case studies.</p>
-            <div class="tl-tags"><span>Leadership</span><span>Python</span><span>SQL</span><span>Power BI</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal-timeline" data-side="right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card glass-card">
-            <div class="tl-header">
-              <div>
-                <h3>Data Analytics Intern</h3>
-                <span class="tl-company">Infoseek</span>
-              </div>
-              <span class="tl-date">Jun 2025 – Aug 2025</span>
-            </div>
-            <p>Cleaned and transformed datasets (50k+ rows) using Excel and SQL. Built Power BI dashboards to track KPIs, improving reporting efficiency by 30%. Automated Excel reports.</p>
-            <div class="tl-tags"><span>ETL</span><span>Power BI</span><span>Automation</span><span>SQL</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal-timeline" data-side="left">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card glass-card">
-            <div class="tl-header">
-              <div>
-                <h3>B.Tech (CS - Data Science)</h3>
-                <span class="tl-company">BNCET College, Lucknow</span>
-              </div>
-              <span class="tl-date">2022 – 2026</span>
-            </div>
-            <p>Focusing on analytical methodologies, data-driven problem solving, and modern tech stacks.</p>
-            <div class="tl-tags"><span>Data Science</span><span>Education</span></div>
-          </div>
-        </div>
-
-        <div class="timeline-item reveal-timeline" data-side="right">
-          <div class="timeline-dot"></div>
-          <div class="timeline-card glass-card">
-            <div class="tl-header">
-              <div>
-                <h3>High School / Intermediate</h3>
-                <span class="tl-company">Kendriya Vidyalaya School</span>
-              </div>
-              <span class="tl-date">2020 – 2022</span>
-            </div>
-            <p>Foundation in Science and Mathematics.</p>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- 5.5 CERTIFICATIONS ───────────────────────────────────── -->
-  <section id="certifications" class="section certifications-section">
-    <div class="section-container">
-      <div class="section-label reveal-up">Recognition</div>
-      <h2 class="section-title text-center reveal-up">My <span class="gradient-text">Certifications</span></h2>
-      <div class="tools-row reveal-up" style="margin-top: 40px; justify-content: center;">
-        <span class="tool-chip">Data Visualization – Tata Group (Forage)</span>
-        <span class="tool-chip">Data Analytics – Deloitte (Forage)</span>
-        <span class="tool-chip">Python for Data Science – ERA Foundation</span>
-        <span class="tool-chip">Advanced Figma – ERA Foundation</span>
-        <span class="tool-chip">NumPy for Data Science – Udemy</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- 6. CONTACT ───────────────────────────────────────────── -->
-  <section id="contact" class="section contact-section">
-    <div class="blob blob-8"></div>
-    <div class="section-container">
-      <div class="section-label reveal-up">Contact</div>
-      <h2 class="section-title text-center reveal-up">Let's <span class="gradient-text">Connect</span></h2>
-      <p class="section-subtitle reveal-up">Open to internships, collaborations, and entry-level data roles</p>
-
-      <div class="contact-grid">
-        <div class="contact-links reveal-up">
-          <a href="mailto:shashank17oct2003@gmail.com" class="contact-card glass-card" id="contact-email">
-            <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
-            <div>
-              <strong>Email</strong>
+          <div class="contact-details">
+            <a href="mailto:shashank17oct2003@gmail.com" class="contact-item">
+              <i data-lucide="mail" style="width: 18px; height: 18px;"></i>
               <span>shashank17oct2003@gmail.com</span>
-            </div>
-            <i class="fa-solid fa-arrow-right contact-arrow"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/shashank-mishra-a0462b267/" target="_blank" class="contact-card glass-card" id="contact-linkedin">
-            <div class="contact-icon"><i class="fa-brands fa-linkedin"></i></div>
-            <div>
-              <strong>LinkedIn</strong>
-              <span>shashank-mishra-a0462b267</span>
-            </div>
-            <i class="fa-solid fa-arrow-right contact-arrow"></i>
-          </a>
-          <a href="https://github.com/shashank17mishra" target="_blank" class="contact-card glass-card" id="contact-github">
-            <div class="contact-icon"><i class="fa-brands fa-github"></i></div>
-            <div>
-              <strong>GitHub</strong>
-              <span>shashank17mishra</span>
-            </div>
-            <i class="fa-solid fa-arrow-right contact-arrow"></i>
-          </a>
-          <a href="https://kaggle.com" target="_blank" class="contact-card glass-card" id="contact-kaggle">
-            <div class="contact-icon">🏆</div>
-            <div>
-              <strong>Kaggle</strong>
-              <span>Competition Profile</span>
-            </div>
-            <i class="fa-solid fa-arrow-right contact-arrow"></i>
-          </a>
-        </div>
+            </a>
 
-        <div class="contact-form-wrap reveal-right">
-          <form class="contact-form glass-card" id="contact-form">
-            <h3>Send a Message</h3>
-            <div class="form-group">
-              <label for="name">Name</label>
-              <input type="text" id="name" placeholder="Your name" required />
-            </div>
-            <div class="form-group">
-              <label for="email">Email</label>
-              <input type="email" id="email" placeholder="your@email.com" required />
-            </div>
-            <div class="form-group">
-              <label for="message">Message</label>
-              <textarea id="message" rows="4" placeholder="Tell me about the opportunity..." required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary full-width" id="form-submit">
-              <span>Send Message</span>
-              <i class="fa-solid fa-paper-plane"></i>
-            </button>
-          </form>
+            <a href="tel:+916389397788" class="contact-item">
+              <i data-lucide="phone" style="width: 18px; height: 18px;"></i>
+              <span>+91 6389397788</span>
+            </a>
+
+            <span class="contact-item">
+              <i data-lucide="at-sign" style="width: 18px; height: 18px;"></i>
+              <span>@shashank17mishra</span>
+            </span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- ─── FOOTER ───────────────────────────────────────────── -->
-  <footer id="footer">
-    <div class="footer-inner">
-      <div class="footer-brand">SM</div>
-      <p>Designed & Built by <strong>Shashank Mishra</strong> · 2025</p>
-      <div class="footer-links">
-        <a href="https://github.com/shashank17mishra" target="_blank"><i class="fa-brands fa-github"></i></a>
-        <a href="https://www.linkedin.com/in/shashank-mishra-a0462b267/" target="_blank"><i class="fa-brands fa-linkedin"></i></a>
-      </div>
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container footer-content">
+      <p>© 2026 Shashank Mishra. All rights reserved.</p>
+      <p>Full-Stack Web Developer · Light Editorial Aesthetic</p>
     </div>
-    <div class="footer-glow"></div>
   </footer>
 
-  <!-- Scripts -->
-  <script src="js/three-scene.js"></script>
-  <script src="js/main.js"></script>
+  <!-- PROJECT DETAIL MODAL -->
+  <div class="modal-overlay" id="projectModal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Close modal">
+        <i data-lucide="x"></i>
+      </button>
+      <div id="modalBody">
+        <!-- Content Injected via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT FORM DRAWER -->
+  <div class="modal-overlay" id="contactDrawer" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="modal-card">
+      <button class="modal-close" id="drawerCloseBtn" aria-label="Close drawer">
+        <i data-lucide="x"></i>
+      </button>
+
+      <div style="margin-bottom: 1.5rem;">
+        <span class="eyebrow">INQUIRY FORM</span>
+        <h3 style="font-family: var(--font-display); font-size: 1.75rem; font-weight: 600; margin-top: 0.25rem;">Start a Project</h3>
+        <p style="font-size: 0.9375rem; color: var(--text-muted);">Fill out the form below to share details about your project or website goals.</p>
+      </div>
+
+      <form id="contactForm">
+        <div class="form-group">
+          <label for="formName">Your Name</label>
+          <input type="text" id="formName" placeholder="e.g. Alex Morgan" required />
+        </div>
+
+        <div class="form-group">
+          <label for="formEmail">Email Address</label>
+          <input type="email" id="formEmail" placeholder="alex@company.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="formMessage">Project Details & Objectives</label>
+          <textarea id="formMessage" rows="4" placeholder="Tell me about your website timeline, design preferences, or technical requirements..." required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 0.5rem;">
+          <span>Send Inquiry</span>
+          <i data-lucide="send" style="width: 16px; height: 16px;"></i>
+        </button>
+
+        <div id="formStatus" style="margin-top: 1rem; font-size: 0.875rem; text-align: center; color: var(--accent-dot);" aria-live="polite"></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="main.js"></script>
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+  </script>
 </body>
 </html>
