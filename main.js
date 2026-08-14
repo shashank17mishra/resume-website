@@ -305,6 +305,7 @@ function initMobileNav() {
   const toggleBtn = document.getElementById('mobileNavToggle');
   const overlay = document.getElementById('mobileMenuOverlay');
   const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+  const header = document.getElementById('siteHeader');
 
   if (!toggleBtn || !overlay) return;
 
@@ -320,6 +321,7 @@ function initMobileNav() {
   const openMenu = () => {
     overlay.classList.add('is-active');
     toggleBtn.classList.add('is-active');
+    header?.classList.add('mobile-open');
     toggleBtn.setAttribute('aria-expanded', 'true');
     overlay.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
@@ -328,6 +330,7 @@ function initMobileNav() {
   const closeMenu = () => {
     overlay.classList.remove('is-active');
     toggleBtn.classList.remove('is-active');
+    header?.classList.remove('mobile-open');
     toggleBtn.setAttribute('aria-expanded', 'false');
     overlay.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
