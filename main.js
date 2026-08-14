@@ -190,8 +190,21 @@ function initProjectModals() {
     item.addEventListener('click', () => {
       const domain = item.getAttribute('data-domain');
       const category = item.getAttribute('data-category') || 'Web Development';
-      const url = domain.startsWith('http') ? domain : `https://${domain}/`;
+      const targetUrl = item.getAttribute('data-target-url');
+      const url = targetUrl ? targetUrl : (domain.startsWith('http') ? domain : `https://${domain}/`);
       openModal(domain, category, url, `Project built and deployed for ${domain}. Engineered with custom frontend, responsive UI layout, performance optimization, and scalable backend infrastructure.`);
+    });
+  });
+
+  const showcaseCards = document.querySelectorAll('.showcase-card');
+  showcaseCards.forEach(card => {
+    card.style.cursor = 'pointer';
+    card.addEventListener('click', () => {
+      const title = card.querySelector('.showcase-title')?.textContent?.trim() || 'UI Design Showcase';
+      const desc = card.querySelector('.showcase-sub')?.textContent?.trim() || 'Modern interface exploration.';
+      const targetUrl = card.getAttribute('data-target-url');
+      const url = targetUrl ? targetUrl : `https://${title.replace(/^www\./, '')}/`;
+      openModal(title, 'UI Design Showcase', url, desc);
     });
   });
 
@@ -252,8 +265,8 @@ function initContactDrawer() {
       formStatus.style.color = 'var(--text-muted)';
       formStatus.textContent = 'Sending your inquiry...';
 
-      // Insert your deployed Google Apps Script Web App URL below
-      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+      // Deployed Google Apps Script Web App URL
+      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEW6nL_oURNMCsJ6Ng8TMan-lS8kw572kxfqDLt8fygLjpf_oOIzt6XkbEvwvJdsu6Gw/exec';
 
       try {
         if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
