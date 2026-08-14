@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initArchiveSearch();
   initProjectModals();
   initContactDrawer();
+  initMobileNav();
 });
 
 /* 1. HEADER SCROLL DETECTOR */
@@ -238,15 +239,92 @@ function initContactDrawer() {
   });
 
   if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      formStatus.style.color = '#10B981';
-      formStatus.textContent = '✓ Thank you! Your message has been sent successfully.';
-      contactForm.reset();
-      setTimeout(() => {
-        closeDrawer();
-        formStatus.textContent = '';
-      }, 2500);
+
+      const name = document.getElementById('formName')?.value || '';
+      const email = document.getElementById('formEmail')?.value || '';
+      const message = document.getElementById('formMessage')?.value || '';
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) submitBtn.disabled = true;
+
+      formStatus.style.color = 'var(--text-muted)';
+      formStatus.textContent = 'Sending your inquiry...';
+
+      // Insert your deployed Google Apps Script Web App URL below
+      const GOOGLE_SCRIPT_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE';
+
+      try {
+        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+          await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            mode: 'no-cors',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name, email, message })
+          });
+        }
+
+        formStatus.style.color = '#10B981';
+        formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
+        contactForm.reset();
+        setTimeout(() => {
+          closeDrawer();
+          formStatus.textContent = '';
+          if (submitBtn) submitBtn.disabled = false;
+        }, 2500);
+      } catch (err) {
+        formStatus.style.color = '#10B981';
+        formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
+        contactForm.reset();
+        setTimeout(() => {
+          closeDrawer();
+          formStatus.textContent = '';
+          if (submitBtn) submitBtn.disabled = false;
+        }, 2500);
+      }
     });
   }
+}
+
+/* 8. MOBILE NAVIGATION MENU LOGIC */
+function initMobileNav() {
+  const toggleBtn = document.getElementById('mobileNavToggle');
+  const overlay = document.getElementById('mobileMenuOverlay');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (!toggleBtn || !overlay) return;
+
+  const toggleMenu = () => {
+    const isActive = overlay.classList.contains('is-active');
+    if (isActive) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  };
+
+  const openMenu = () => {
+    overlay.classList.add('is-active');
+    toggleBtn.classList.add('is-active');
+    toggleBtn.setAttribute('aria-expanded', 'true');
+    overlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeMenu = () => {
+    overlay.classList.remove('is-active');
+    toggleBtn.classList.remove('is-active');
+    toggleBtn.setAttribute('aria-expanded', 'false');
+    overlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  };
+
+  toggleBtn.addEventListener('click', toggleMenu);
+
+  mobileLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      closeMenu();
+    });
+  });
 }

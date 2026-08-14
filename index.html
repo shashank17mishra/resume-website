@@ -41,6 +41,27 @@
           <span>Start a Project</span>
           <i data-lucide="arrow-up-right" class="btn-icon-arrow"></i>
         </button>
+
+        <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <i data-lucide="menu" class="icon-menu"></i>
+          <i data-lucide="x" class="icon-close"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MOBILE MENU OVERLAY -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay" aria-hidden="true">
+      <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+        <a href="#selected-work" class="mobile-nav-link">Work</a>
+        <a href="#about" class="mobile-nav-link">About</a>
+        <a href="#skills" class="mobile-nav-link">Skills</a>
+        <a href="#more-work" class="mobile-nav-link">Archive</a>
+      </nav>
+      <div class="mobile-menu-footer">
+        <button class="btn btn-primary open-contact-btn" style="width: 100%;">
+          <span>Start a Project</span>
+          <i data-lucide="arrow-up-right"></i>
+        </button>
       </div>
     </div>
   </header>
@@ -438,151 +459,213 @@
         </div>
 
         <div class="archive-list reveal-on-scroll" id="archiveList">
-          <div class="archive-item" data-domain="www.indiatellama.com" data-category="Media & Publishing">
-            <span class="archive-num">01</span>
-            <span class="archive-domain">www.indiatellama.com</span>
-            <span class="archive-tag">Media & Publishing</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+          <div class="archive-item" data-domain="indiatellama.com" data-category="Media & Publishing">
+            <div class="archive-item-left">
+              <span class="archive-num">01</span>
+              <span class="archive-domain">indiatellama.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Media & Publishing</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="indiacotidiana.com" data-category="Culture & Travel">
-            <span class="archive-num">02</span>
-            <span class="archive-domain">indiacotidiana.com</span>
-            <span class="archive-tag">Culture & Travel</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">02</span>
+              <span class="archive-domain">indiacotidiana.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Culture & Travel</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="allindiadestination.com" data-category="Travel & Tourism">
-            <span class="archive-num">03</span>
-            <span class="archive-domain">allindiadestination.com</span>
-            <span class="archive-tag">Travel & Tourism</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
-          </div>
-
-          <div class="archive-item" data-domain="www.indiatellama.com" data-category="Media & News">
-            <span class="archive-num">04</span>
-            <span class="archive-domain">www.indiatellama.com</span>
-            <span class="archive-tag">Media & News</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">03</span>
+              <span class="archive-domain">allindiadestination.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Travel & Tourism</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="rammandirayodhyatours.com" data-category="Tourism & Pilgrimage">
-            <span class="archive-num">05</span>
-            <span class="archive-domain">rammandirayodhyatours.com</span>
-            <span class="archive-tag">Tourism & Pilgrimage</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">04</span>
+              <span class="archive-domain">rammandirayodhyatours.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Tourism & Pilgrimage</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="urbanrugsandcarpets.com" data-category="E-Commerce & Home">
-            <span class="archive-num">06</span>
-            <span class="archive-domain">urbanrugsandcarpets.com</span>
-            <span class="archive-tag">E-Commerce & Home</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">05</span>
+              <span class="archive-domain">urbanrugsandcarpets.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">E-Commerce & Home</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="hotelhrishikeshhigh.com" data-category="Hospitality & Hotel">
-            <span class="archive-num">07</span>
-            <span class="archive-domain">hotelhrishikeshhigh.com</span>
-            <span class="archive-tag">Hospitality & Hotel</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">06</span>
+              <span class="archive-domain">hotelhrishikeshhigh.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Hospitality & Hotel</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="adbhutmedia.com" data-category="Digital Agency & Media">
-            <span class="archive-num">08</span>
-            <span class="archive-domain">adbhutmedia.com</span>
-            <span class="archive-tag">Digital Agency & Media</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">07</span>
+              <span class="archive-domain">adbhutmedia.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Digital Agency & Media</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="bbsdegreecollege.org.in" data-category="Education & Academy">
-            <span class="archive-num">09</span>
-            <span class="archive-domain">bbsdegreecollege.org.in</span>
-            <span class="archive-tag">Education & Academy</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">08</span>
+              <span class="archive-domain">bbsdegreecollege.org.in</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Education & Academy</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="fileconvertgo.com" data-category="SaaS Tool & Utilities">
-            <span class="archive-num">10</span>
-            <span class="archive-domain">fileconvertgo.com</span>
-            <span class="archive-tag">SaaS Tool & Utilities</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
-          </div>
-
-          <div class="archive-item" data-domain="www.indiacotidiana.com" data-category="Editorial Portal">
-            <span class="archive-num">11</span>
-            <span class="archive-domain">www.indiacotidiana.com</span>
-            <span class="archive-tag">Editorial Portal</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">09</span>
+              <span class="archive-domain">fileconvertgo.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">SaaS Tool & Utilities</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="alphaaestheticsclinics.com" data-category="Healthcare & Medical">
-            <span class="archive-num">12</span>
-            <span class="archive-domain">alphaaestheticsclinics.com</span>
-            <span class="archive-tag">Healthcare & Medical</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">10</span>
+              <span class="archive-domain">alphaaestheticsclinics.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Healthcare & Medical</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="utdigitalmedia.com" data-category="Digital Marketing">
-            <span class="archive-num">13</span>
-            <span class="archive-domain">utdigitalmedia.com</span>
-            <span class="archive-tag">Digital Marketing</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">11</span>
+              <span class="archive-domain">utdigitalmedia.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Digital Marketing</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="eternitethreads.com" data-category="Apparel & Fashion">
-            <span class="archive-num">14</span>
-            <span class="archive-domain">eternitethreads.com</span>
-            <span class="archive-tag">Apparel & Fashion</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">12</span>
+              <span class="archive-domain">eternitethreads.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Apparel & Fashion</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="dreamdecor.ae" data-category="Interior & Decor UAE">
-            <span class="archive-num">15</span>
-            <span class="archive-domain">dreamdecor.ae</span>
-            <span class="archive-tag">Interior & Decor UAE</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">13</span>
+              <span class="archive-domain">dreamdecor.ae</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Interior & Decor UAE</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="eps.org.in" data-category="Education Institution">
-            <span class="archive-num">16</span>
-            <span class="archive-domain">eps.org.in</span>
-            <span class="archive-tag">Education Institution</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">14</span>
+              <span class="archive-domain">eps.org.in</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Education Institution</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="thedermabright.com" data-category="Skincare & Wellness">
-            <span class="archive-num">17</span>
-            <span class="archive-domain">thedermabright.com</span>
-            <span class="archive-tag">Skincare & Wellness</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">15</span>
+              <span class="archive-domain">thedermabright.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Skincare & Wellness</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="thewalldesigners.in" data-category="Architecture & Decor">
-            <span class="archive-num">18</span>
-            <span class="archive-domain">thewalldesigners.in</span>
-            <span class="archive-tag">Architecture & Decor</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">16</span>
+              <span class="archive-domain">thewalldesigners.in</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Architecture & Decor</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="xaviersbahraich.com" data-category="School & Education">
-            <span class="archive-num">19</span>
-            <span class="archive-domain">xaviersbahraich.com</span>
-            <span class="archive-tag">School & Education</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">17</span>
+              <span class="archive-domain">xaviersbahraich.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">School & Education</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="detalia.ae" data-category="Design Studio UAE">
-            <span class="archive-num">20</span>
-            <span class="archive-domain">detalia.ae</span>
-            <span class="archive-tag">Design Studio UAE</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">18</span>
+              <span class="archive-domain">detalia.ae</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">Design Studio UAE</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
 
           <div class="archive-item" data-domain="toppersinstitutelucknow.com" data-category="EdTech Coaching">
-            <span class="archive-num">21</span>
-            <span class="archive-domain">toppersinstitutelucknow.com</span>
-            <span class="archive-tag">EdTech Coaching</span>
-            <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            <div class="archive-item-left">
+              <span class="archive-num">19</span>
+              <span class="archive-domain">toppersinstitutelucknow.com</span>
+            </div>
+            <div class="archive-item-right">
+              <span class="archive-tag">EdTech Coaching</span>
+              <i data-lucide="arrow-up-right" class="archive-arrow"></i>
+            </div>
           </div>
         </div>
       </div>
@@ -603,7 +686,7 @@
               <img src="indiatellama.png" alt="India Tell Ama Media Website" class="showcase-real-img" />
             </div>
             <div class="showcase-caption">
-              <h4 class="showcase-title">www.indiatellama.com</h4>
+              <h4 class="showcase-title">indiatellama.com</h4>
               <p class="showcase-sub">Media & News Publishing Platform · Editorial UI Architecture.</p>
             </div>
           </div>
