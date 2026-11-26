@@ -59,7 +59,8 @@ function initStatCounters() {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         const target = parseInt(entry.target.getAttribute('data-target'), 10);
-        animateValue(entry.target, 0, target, 1500);
+        const suffix = entry.target.getAttribute('data-suffix') ?? '+';
+        animateValue(entry.target, 0, target, 1500, suffix);
         observer.unobserve(entry.target);
       }
     });
@@ -68,84 +69,84 @@ function initStatCounters() {
   statNumbers.forEach(el => observer.observe(el));
 }
 
-function animateValue(obj, start, end, duration) {
-  let startTimestamp = null;
-  const step = (timestamp) => {
-    if (!startTimestamp) startTimestamp = timestamp;
-    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-    const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease-out
-    obj.innerHTML = Math.floor(easeProgress * (end - start) + start) + '+';
-    if (progress < 1) {
-      window.requestAnimationFrame(step);
-    }
-  };
-  window.requestAnimationFrame(step);
-}
-
-/* 4. ACTIVE NAVIGATION LINK HIGHLIGHTING */
-function initNavHighlighting() {
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  if (!sections.length || !navLinks.length) return;
-
-  window.addEventListener('scroll', () => {
-    let current = '';
-    const scrollPosition = window.scrollY + 200;
-
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
+  function animateValue(obj, start, end, duration, suffix = '+') {
+    let startTimestamp = null;
+    const step = (timestamp) => {
+      if (!startTimestamp) startTimestamp = timestamp;
+      const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+      const easeProgress = 1 - Math.pow(1 - progress, 3); // cubic ease-out
+      obj.innerHTML = Math.floor(easeProgress * (end - start) + start) + suffix;
+      if (progress < 1) {
+        window.requestAnimationFrame(step);
       }
+    };
+    window.requestAnimationFrame(step);
+  }
+
+  /* 4. ACTIVE NAVIGATION LINK HIGHLIGHTING */
+  function initNavHighlighting() {
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    if (!sections.length || !navLinks.length) return;
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      const scrollPosition = window.scrollY + 200;
+
+      sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.offsetHeight;
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+          current = section.getAttribute('id');
+        }
+      });
+
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('href') === `#${current}`) {
+          link.classList.add('active');
+        }
+      });
+    }, { passive: true });
+  }
+
+  /* 5. ARCHIVE REAL-TIME SEARCH FILTER */
+  function initArchiveSearch() {
+    const searchInput = document.getElementById('archiveSearchInput');
+    const archiveItems = document.querySelectorAll('.archive-item');
+
+    if (!searchInput || !archiveItems.length) return;
+
+    searchInput.addEventListener('input', (e) => {
+      const query = e.target.value.toLowerCase().trim();
+
+      archiveItems.forEach(item => {
+        const domain = item.getAttribute('data-domain')?.toLowerCase() || '';
+        const category = item.getAttribute('data-category')?.toLowerCase() || '';
+        const matches = domain.includes(query) || category.includes(query);
+
+        if (matches) {
+          item.style.display = 'grid';
+        } else {
+          item.style.display = 'none';
+        }
+      });
     });
+  }
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  }, { passive: true });
-}
+  /* 6. PROJECT DETAIL MODAL LOGIC */
+  function initProjectModals() {
+    const projectModal = document.getElementById('projectModal');
+    const modalCloseBtn = document.getElementById('modalCloseBtn');
+    const modalBody = document.getElementById('modalBody');
+    const viewButtons = document.querySelectorAll('.view-project-btn');
+    const archiveItems = document.querySelectorAll('.archive-item');
 
-/* 5. ARCHIVE REAL-TIME SEARCH FILTER */
-function initArchiveSearch() {
-  const searchInput = document.getElementById('archiveSearchInput');
-  const archiveItems = document.querySelectorAll('.archive-item');
+    if (!projectModal || !modalBody) return;
 
-  if (!searchInput || !archiveItems.length) return;
-
-  searchInput.addEventListener('input', (e) => {
-    const query = e.target.value.toLowerCase().trim();
-
-    archiveItems.forEach(item => {
-      const domain = item.getAttribute('data-domain')?.toLowerCase() || '';
-      const category = item.getAttribute('data-category')?.toLowerCase() || '';
-      const matches = domain.includes(query) || category.includes(query);
-
-      if (matches) {
-        item.style.display = 'grid';
-      } else {
-        item.style.display = 'none';
-      }
-    });
-  });
-}
-
-/* 6. PROJECT DETAIL MODAL LOGIC */
-function initProjectModals() {
-  const projectModal = document.getElementById('projectModal');
-  const modalCloseBtn = document.getElementById('modalCloseBtn');
-  const modalBody = document.getElementById('modalBody');
-  const viewButtons = document.querySelectorAll('.view-project-btn');
-  const archiveItems = document.querySelectorAll('.archive-item');
-
-  if (!projectModal || !modalBody) return;
-
-  const openModal = (title, category, url, desc) => {
-    modalBody.innerHTML = `
+    const openModal = (title, category, url, desc) => {
+      modalBody.innerHTML = `
       <div style="margin-bottom: 1rem;">
         <span class="eyebrow">${category}</span>
         <h3 style="font-family: var(--font-display); font-size: 2rem; font-weight: 600; margin-top: 0.25rem;">${title}</h3>
@@ -160,187 +161,187 @@ function initProjectModals() {
       </div>
     `;
 
-    if (window.lucide) window.lucide.createIcons();
-    projectModal.classList.add('active');
-    projectModal.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
+      if (window.lucide) window.lucide.createIcons();
+      projectModal.classList.add('active');
+      projectModal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
 
-    modalBody.querySelector('.close-modal-trigger')?.addEventListener('click', closeModal);
-  };
+      modalBody.querySelector('.close-modal-trigger')?.addEventListener('click', closeModal);
+    };
 
-  const closeModal = () => {
-    projectModal.classList.remove('active');
-    projectModal.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
+    const closeModal = () => {
+      projectModal.classList.remove('active');
+      projectModal.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
 
-  viewButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const title = btn.getAttribute('data-title') || 'Featured Project';
-      const url = btn.getAttribute('data-url') || '#';
-      const desc = btn.getAttribute('data-desc') || 'Full-stack custom website built with modern technologies.';
-      const card = btn.closest('.project-card');
-      const category = card?.querySelector('.project-category')?.textContent || 'Web Development';
-      openModal(title, category, url, desc);
+    viewButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const title = btn.getAttribute('data-title') || 'Featured Project';
+        const url = btn.getAttribute('data-url') || '#';
+        const desc = btn.getAttribute('data-desc') || 'Full-stack custom website built with modern technologies.';
+        const card = btn.closest('.project-card');
+        const category = card?.querySelector('.project-category')?.textContent || 'Web Development';
+        openModal(title, category, url, desc);
+      });
     });
-  });
 
-  archiveItems.forEach(item => {
-    item.addEventListener('click', () => {
-      const domain = item.getAttribute('data-domain');
-      const category = item.getAttribute('data-category') || 'Web Development';
-      const targetUrl = item.getAttribute('data-target-url');
-      const url = targetUrl ? targetUrl : (domain.startsWith('http') ? domain : `https://${domain}/`);
-      openModal(domain, category, url, `Project built and deployed for ${domain}. Engineered with custom frontend, responsive UI layout, performance optimization, and scalable backend infrastructure.`);
+    archiveItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const domain = item.getAttribute('data-domain');
+        const category = item.getAttribute('data-category') || 'Web Development';
+        const targetUrl = item.getAttribute('data-target-url');
+        const url = targetUrl ? targetUrl : (domain.startsWith('http') ? domain : `https://${domain}/`);
+        openModal(domain, category, url, `Project built and deployed for ${domain}. Engineered with custom frontend, responsive UI layout, performance optimization, and scalable backend infrastructure.`);
+      });
     });
-  });
 
-  const showcaseCards = document.querySelectorAll('.showcase-card');
-  showcaseCards.forEach(card => {
-    card.style.cursor = 'pointer';
-    card.addEventListener('click', () => {
-      const title = card.querySelector('.showcase-title')?.textContent?.trim() || 'UI Design Showcase';
-      const desc = card.querySelector('.showcase-sub')?.textContent?.trim() || 'Modern interface exploration.';
-      const targetUrl = card.getAttribute('data-target-url');
-      const url = targetUrl ? targetUrl : `https://${title.replace(/^www\./, '')}/`;
-      openModal(title, 'UI Design Showcase', url, desc);
+    const showcaseCards = document.querySelectorAll('.showcase-card');
+    showcaseCards.forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => {
+        const title = card.querySelector('.showcase-title')?.textContent?.trim() || 'UI Design Showcase';
+        const desc = card.querySelector('.showcase-sub')?.textContent?.trim() || 'Modern interface exploration.';
+        const targetUrl = card.getAttribute('data-target-url');
+        const url = targetUrl ? targetUrl : `https://${title.replace(/^www\./, '')}/`;
+        openModal(title, 'UI Design Showcase', url, desc);
+      });
     });
-  });
 
-  modalCloseBtn?.addEventListener('click', closeModal);
-  projectModal.addEventListener('click', (e) => {
-    if (e.target === projectModal) closeModal();
-  });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && projectModal.classList.contains('active')) closeModal();
-  });
-}
-
-/* 7. CONTACT DRAWER LOGIC */
-function initContactDrawer() {
-  const contactDrawer = document.getElementById('contactDrawer');
-  const drawerCloseBtn = document.getElementById('drawerCloseBtn');
-  const openButtons = document.querySelectorAll('.open-contact-btn');
-  const contactForm = document.getElementById('contactForm');
-  const formStatus = document.getElementById('formStatus');
-
-  if (!contactDrawer) return;
-
-  const openDrawer = () => {
-    contactDrawer.classList.add('active');
-    contactDrawer.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
-
-  const closeDrawer = () => {
-    contactDrawer.classList.remove('active');
-    contactDrawer.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  openButtons.forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      openDrawer();
+    modalCloseBtn?.addEventListener('click', closeModal);
+    projectModal.addEventListener('click', (e) => {
+      if (e.target === projectModal) closeModal();
     });
-  });
-
-  drawerCloseBtn?.addEventListener('click', closeDrawer);
-  contactDrawer.addEventListener('click', (e) => {
-    if (e.target === contactDrawer) closeDrawer();
-  });
-
-  if (contactForm && formStatus) {
-    contactForm.addEventListener('submit', async (e) => {
-      e.preventDefault();
-
-      const name = document.getElementById('formName')?.value || '';
-      const email = document.getElementById('formEmail')?.value || '';
-      const message = document.getElementById('formMessage')?.value || '';
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      if (submitBtn) submitBtn.disabled = true;
-
-      formStatus.style.color = 'var(--text-muted)';
-      formStatus.textContent = 'Sending your inquiry...';
-
-      // Deployed Google Apps Script Web App URL
-      const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEW6nL_oURNMCsJ6Ng8TMan-lS8kw572kxfqDLt8fygLjpf_oOIzt6XkbEvwvJdsu6Gw/exec';
-
-      try {
-        if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
-          await fetch(GOOGLE_SCRIPT_URL, {
-            method: 'POST',
-            mode: 'no-cors',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ name, email, message })
-          });
-        }
-
-        formStatus.style.color = '#10B981';
-        formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
-        contactForm.reset();
-        setTimeout(() => {
-          closeDrawer();
-          formStatus.textContent = '';
-          if (submitBtn) submitBtn.disabled = false;
-        }, 2500);
-      } catch (err) {
-        formStatus.style.color = '#10B981';
-        formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
-        contactForm.reset();
-        setTimeout(() => {
-          closeDrawer();
-          formStatus.textContent = '';
-          if (submitBtn) submitBtn.disabled = false;
-        }, 2500);
-      }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && projectModal.classList.contains('active')) closeModal();
     });
   }
-}
 
-/* 8. MOBILE NAVIGATION MENU LOGIC */
-function initMobileNav() {
-  const toggleBtn = document.getElementById('mobileNavToggle');
-  const overlay = document.getElementById('mobileMenuOverlay');
-  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
-  const header = document.getElementById('siteHeader');
+  /* 7. CONTACT DRAWER LOGIC */
+  function initContactDrawer() {
+    const contactDrawer = document.getElementById('contactDrawer');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const openButtons = document.querySelectorAll('.open-contact-btn');
+    const contactForm = document.getElementById('contactForm');
+    const formStatus = document.getElementById('formStatus');
 
-  if (!toggleBtn || !overlay) return;
+    if (!contactDrawer) return;
 
-  const toggleMenu = () => {
-    const isActive = overlay.classList.contains('is-active');
-    if (isActive) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  };
+    const openDrawer = () => {
+      contactDrawer.classList.add('active');
+      contactDrawer.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
 
-  const openMenu = () => {
-    overlay.classList.add('is-active');
-    toggleBtn.classList.add('is-active');
-    header?.classList.add('mobile-open');
-    toggleBtn.setAttribute('aria-expanded', 'true');
-    overlay.setAttribute('aria-hidden', 'false');
-    document.body.style.overflow = 'hidden';
-  };
+    const closeDrawer = () => {
+      contactDrawer.classList.remove('active');
+      contactDrawer.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
 
-  const closeMenu = () => {
-    overlay.classList.remove('is-active');
-    toggleBtn.classList.remove('is-active');
-    header?.classList.remove('mobile-open');
-    toggleBtn.setAttribute('aria-expanded', 'false');
-    overlay.setAttribute('aria-hidden', 'true');
-    document.body.style.overflow = '';
-  };
-
-  toggleBtn.addEventListener('click', toggleMenu);
-
-  mobileLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      closeMenu();
+    openButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        openDrawer();
+      });
     });
-  });
-}
+
+    drawerCloseBtn?.addEventListener('click', closeDrawer);
+    contactDrawer.addEventListener('click', (e) => {
+      if (e.target === contactDrawer) closeDrawer();
+    });
+
+    if (contactForm && formStatus) {
+      contactForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+
+        const name = document.getElementById('formName')?.value || '';
+        const email = document.getElementById('formEmail')?.value || '';
+        const message = document.getElementById('formMessage')?.value || '';
+
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        if (submitBtn) submitBtn.disabled = true;
+
+        formStatus.style.color = 'var(--text-muted)';
+        formStatus.textContent = 'Sending your inquiry...';
+
+        // Deployed Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxEW6nL_oURNMCsJ6Ng8TMan-lS8kw572kxfqDLt8fygLjpf_oOIzt6XkbEvwvJdsu6Gw/exec';
+
+        try {
+          if (GOOGLE_SCRIPT_URL && GOOGLE_SCRIPT_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE') {
+            await fetch(GOOGLE_SCRIPT_URL, {
+              method: 'POST',
+              mode: 'no-cors',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ name, email, message })
+            });
+          }
+
+          formStatus.style.color = '#10B981';
+          formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
+          contactForm.reset();
+          setTimeout(() => {
+            closeDrawer();
+            formStatus.textContent = '';
+            if (submitBtn) submitBtn.disabled = false;
+          }, 2500);
+        } catch (err) {
+          formStatus.style.color = '#10B981';
+          formStatus.textContent = '✓ Thank you! Your project inquiry has been sent.';
+          contactForm.reset();
+          setTimeout(() => {
+            closeDrawer();
+            formStatus.textContent = '';
+            if (submitBtn) submitBtn.disabled = false;
+          }, 2500);
+        }
+      });
+    }
+  }
+
+  /* 8. MOBILE NAVIGATION MENU LOGIC */
+  function initMobileNav() {
+    const toggleBtn = document.getElementById('mobileNavToggle');
+    const overlay = document.getElementById('mobileMenuOverlay');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+    const header = document.getElementById('siteHeader');
+
+    if (!toggleBtn || !overlay) return;
+
+    const toggleMenu = () => {
+      const isActive = overlay.classList.contains('is-active');
+      if (isActive) {
+        closeMenu();
+      } else {
+        openMenu();
+      }
+    };
+
+    const openMenu = () => {
+      overlay.classList.add('is-active');
+      toggleBtn.classList.add('is-active');
+      header?.classList.add('mobile-open');
+      toggleBtn.setAttribute('aria-expanded', 'true');
+      overlay.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    };
+
+    const closeMenu = () => {
+      overlay.classList.remove('is-active');
+      toggleBtn.classList.remove('is-active');
+      header?.classList.remove('mobile-open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      overlay.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    };
+
+    toggleBtn.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeMenu();
+      });
+    });
+  }
